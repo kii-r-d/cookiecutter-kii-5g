@@ -1,0 +1,75 @@
+# Build System & Requirements
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cookiecutter-kii-5g"
+version = "0.0.1"
+description = "Cookiecutter template for Kyocera 5G software team."
+authors = [
+  { name = "Evan Chen", email = "evan.chen@kyocera.com" },
+]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.urls]
+"Repository" = "https://github.com/kii-r-d/cookiecutter-kii-5g"
+
+
+# Repository Styling/Linting Tools Config
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["{{cookiecutter.project_slug}}*"]
+
+[tool.setuptools.package-data]
+"{{cookiecutter.project_slug}}" = ["py.typed"]
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+mypy_path=["cookiecutter-kii-5g"]
+strict = false
+
+
+[[tool.mypy.overrides]]
+module="cookiecutter-kii-5g.*"
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.ruff]
+exclude = [
+    ".git",
+    "__pycache__",
+    "old",
+    "build",
+    ".github",
+]
+ignore = [
+    "ANN101",
+    "ANN204",
+    "D203",
+    "D213",
+    "D401",
+]
+line-length = 100
+select = [
+    "ANN",
+    "C9",
+    "D",
+    "E",
+    "F",
+    "W",
+]
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.pydocstyle]
+convention = "google"
