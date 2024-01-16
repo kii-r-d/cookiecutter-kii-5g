@@ -1,0 +1,75 @@
+# Build System & Requirements
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{cookiecutter.project_name}}"
+version = "cookiecutter.version"
+description = "{{cookiecutter.description}}"
+authors = [
+  { name = "{{cookiecutter.author}}", email = "{{cookiecutter.author_email}}" },
+]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.urls]
+"Repository" = "https://github.com/kii-r-d/{{cookiecutter.project_slug}}"
+
+
+# Repository Styling/Linting Tools Config
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["{{cookiecutter.project_slug}}*"]
+
+[tool.setuptools.package-data]
+"{{cookiecutter.project_slug}}" = ["py.typed"]
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+mypy_path=["{{cookiecutter.project_slug}}"]
+strict = false
+
+
+[[tool.mypy.overrides]]
+module="{{cookiecutter.project_slug}}.*"
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.ruff]
+exclude = [
+    ".git",
+    "__pycache__",
+    "old",
+    "build",
+    ".github",
+]
+ignore = [
+    "ANN101",
+    "ANN204",
+    "D203",
+    "D213",
+    "D401",
+]
+line-length = 100
+select = [
+    "ANN",
+    "C9",
+    "D",
+    "E",
+    "F",
+    "W",
+]
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.pydocstyle]
+convention = "google"
