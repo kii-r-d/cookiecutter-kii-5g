@@ -1,6 +1,8 @@
 {
     "project_name": "Your Project Name",
+    "project_folder_name": "your-project-name",
     "project_slug": "your_project_name",
+    "description": "Project description",
     "version": "0.0.1",
     "author": "Your Name",
     "author_email": "your.name@email.com"
